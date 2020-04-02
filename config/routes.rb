@@ -8,12 +8,11 @@ Rails.application.routes.draw do
   resources :recipes
 
   resource :shopping_cart, only: [:show] do
-    put 'add/:product_id', to: 'shopping_carts#add', as: :add_to
-    put 'remove/:product_id', to: 'shopping_carts#remove', as: :remove_from
+    put '/add/:product_id', to: 'shopping_carts#add', as: :add_to
+    put '/remove/:product_id', to: 'shopping_carts#remove', as: :remove_from
   end
 
   resources :orders
-
 
   resource :checkout
 
