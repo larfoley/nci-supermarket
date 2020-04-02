@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'shopping_carts/show'
   root to: 'home#index'
+  
+  get 'shopping_carts/show'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :products

@@ -74,7 +74,7 @@
     outputElement.innerHTML = html
   }
 
-  handleApiError(error) {
+  function handleApiError(error) {
     alert('Unable to load all recipies try again later. Check console for error')
     console.log(e);
   }
