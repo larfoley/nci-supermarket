@@ -23,10 +23,13 @@
   }
 
   class TheMealsDBAdapter {
-    endpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
+    constructor() {
+      this.baseUrl = 'https://www.themealdb.com/api/json/v1/'
+      this.apiKey = '1'
+    }
 
     async findAll() {
-      const response = await fetch(this.endpoint)
+      const response = await fetch(`${this.baseUrl + this.apiKey}/search.php?s=`)
       const { meals } = await response.json()
       return meals
         .map(({ strMeal, strMealThumb, strSource }) => new Meal(strMeal, strMealThumb, strSource))
@@ -35,15 +38,18 @@
   }
 
   class SpoonacularAdapter {
-    baseUrl = 'https://api.spoonacular.com/';
-    endpoint = 'https://api.spoonacular.com/recipes/search?apiKey=bc8819d1c26440c1ac04d4504940fe04'
+    constructor() {
+      this.baseUrl = 'https://api.spoonacular.com/'
+      this.apiKey = 'bc8819d1c26440c1ac04d4504940fe04'
+    }
+
 
     buildImageURL(id) {
       return `https://spoonacular.com/recipeImages/${id}-556x370.jpg?`
     }
 
     async findAll() {
-      const mealsResponse = await fetch(this.endpoint)
+      const mealsResponse = await fetch(`${this.baseUrl}/recipes/search?apiKey=${this.apiKey}`)
       const { results } = await mealsResponse.json()
       const meals = []
 
@@ -60,7 +66,7 @@
     }
   }
 
-  function renderMeals(html) {
+  function renderHTML(html) {
     const outputElement = document.querySelector('.meal__list');
 
     if (outputElement === null) return
@@ -74,10 +80,16 @@
 
     let html = ""
 
-    html += await theMealsDBAdapter.findAll()
-    html += await spoonacularAdapter.findAll()
+    try {
+      html += await theMealsDBAdapter.findAll()
+      html += await spoonacularAdapter.findAll()
 
-    renderMeals(html)
+      renderHTML(html)
+
+    } catch (e) {
+      renderHTML('Unable to load recipies try again later. Check console for error')
+      console.log(e);
+    }
   })
 
 })()
