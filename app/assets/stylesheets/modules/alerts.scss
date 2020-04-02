@@ -26,6 +26,11 @@
     border: 3px solid $success-color;
     background-color: lighten($success-color, 10%);
   }
+
+  &--infor {
+    border: 3px solid $success-color;
+    background-color: lighten($success-color, 10%);
+  }
 }
 
 .text-alert {

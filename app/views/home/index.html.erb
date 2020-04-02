@@ -2,6 +2,7 @@
   <h1>NCI Supermarket</h1>
 </div>
 <div class="main-content">
+  <%= render "layouts/flash" %>
   <div class="page-section">
     <h2 class="page-section__title">Products</h2>
     <%= render "shared/product_list", :products => @products, :admin_view => false %>

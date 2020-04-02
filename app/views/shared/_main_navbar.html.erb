@@ -18,7 +18,7 @@
         <% if user_signed_in? %>
           <li class="main-navbar__item">
             <%= active_link_to notifications_path, class: 'main-navbar__link' do %>
-            <%= fa_icon "bell 2x", class: 'main-navbar__link-icon'%>
+            <%= fa_icon "envelope 2x", class: 'main-navbar__link-icon'%>
             <% end %>
           </li>
           <% if current_user.admin? %>
