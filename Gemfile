@@ -68,3 +68,4 @@ gem 'active_link_to'
 gem "font-awesome-rails"
 gem 'shopping_cart_session', '~> 0.1.0'
 gem 'rails-observers'
+gem 'webpacker', '~> 4.x'
