@@ -1,0 +1,13 @@
+<h1 class="page-title">
+  Orders
+  <div class="page-title__sub-text">
+    <% if @orders.length > 0 %>
+      Showing <%= @orders.length %> orders
+    <% else %>
+      No orders have been made
+    <% end %>
+  </div>
+</h1>
+<div class="card card--padded">
+  <%= render "shared/orders", :orders => @orders, :admin_view => true %>
+</div>

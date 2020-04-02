@@ -1,0 +1,12 @@
+<div class="hero">
+  <h1>NCI Supermarket</h1>
+</div>
+<div class="main-content">
+  <div class="page-section">
+    <h2 class="page-section__title">Products</h2>
+    <%= render "shared/product_list", :products => @products, :admin_view => false %>
+    <%= link_to products_path, :class => 'link'  do %>
+       View All
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.text-field {
+  padding: .9em 1.3em;
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  border: none;
+  background-color: white;
+  border: 2px solid #e8ebed;
+  color: black;
+  font-size: inherit;
+
+  &:focus {
+    outline: 0;
+    background-color: white;
+  }
+}
+
+.field_with_errors {
+  .text-field {
+    border-color: $danger-color
+  }
+}

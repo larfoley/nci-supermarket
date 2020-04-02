@@ -1,0 +1,15 @@
+<h1 class="page-title">Update Order Status</h1>
+
+<div class="card card--padded">
+  <%= form_with(model: @order, url: admin_order_path) do |form| %>
+
+    <div class="form-field">
+      <%= form.label :status %>
+      <%= select(:order, :status, options_for_select(Order.statuses.keys.to_a, form.object.status), {}, {:class => "text-field"} ) %>
+    </div>
+
+    <div class="form-field">
+      <%= form.submit class: 'button' %>
+    </div>
+  <% end %>
+</div>

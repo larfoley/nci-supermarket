@@ -1,0 +1,19 @@
+.media {
+  display: flex;
+
+  &--center-items {
+    align-items: center; 
+  }
+
+  &__asset {
+    margin-right: 2em;
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__right {
+    flex: 1;
+  }
+}

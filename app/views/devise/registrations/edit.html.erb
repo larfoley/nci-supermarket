@@ -1,0 +1,62 @@
+<div class="centered-container">
+  <h1 class="page-title">Edit Account</h1>
+  <%= link_to account_path, :class => 'link link--back'  do %>
+    <%= fa_icon "arrow-left" %> Account
+  <% end %>
+  <div class="card__list">
+    <div class="card card--padded">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-field" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="form-field">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+        <%= f.password_field :password, autocomplete: "new-password", class: "text-field" %>
+        <% if @minimum_password_length %>
+
+        <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text-field" %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "text-field" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Update", class: "button button--small" %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="card card--padded">
+      <h3>Cancel my account</h3>
+      <p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "button button--small button--danger" %></p>
+    </div>
+
+    <div class="card card--padded">
+      <h3>Edit Delivery Address</h3>
+      <%= form_with(model: current_user.account, local: true, path: edit_account_path, method: :put) do |form| %>
+        <div class="form-field">
+          <%= form.text_field :delivery_address, class: 'text-field' %>
+        </div>
+        <div class="form-field">
+          <%= form.submit 'Update Address', class: 'button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

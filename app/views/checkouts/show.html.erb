@@ -1,0 +1,26 @@
+<h1 class="page-title">
+  Checkout
+</h1>
+<% if !@cart.items.empty? %>
+  <div class="card card--padded">
+    <%= form_with scope: :order, url: orders_path, local: true do |form| %>
+
+    <%= render partial: '/shared/form_errors', locals: { model: @order } %>
+
+    <div class="form-field">
+      <%= form.label :delivery_address %>
+      <%= form.text_field :delivery_address, class: "text-field", value: current_user.account.delivery_address %>
+    </div>
+
+    <div class="form-field">
+      <%= form.button :submit, class: 'button', method: :post do %>
+      <span class="button__icon">
+        <%= fa_icon "paper-plane"%>
+      </span>
+      Submit Order
+      <% end %>
+    </div>
+
+    <% end %>
+  </div>
+<% end %>

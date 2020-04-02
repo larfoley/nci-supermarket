@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bread:
+  name: Bread
+  description: MyText
+  price: 9.99
+  stock: 10
+
+milk:
+  name: Milk
+  description: MyText
+  price: 9.99
+  stock: 10

@@ -1,0 +1,40 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ORDER</th>
+      <th>DATE</th>
+      <th>STATUS</th>
+      <th>TOTAL</th>
+      <% if admin_view %>
+        <th>ACCOUNT</th>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+      <tr>
+        <td>
+          <% if admin_view %>
+            <%= link_to "##{order.id}", admin_order_path(order)  %>
+          <% else %>
+            <%= link_to "##{order.id}", order_path(order)  %>
+          <% end %>
+        </td>
+        <td><%= order.created_at %></td>
+        <td><%= order.status %></td>
+        <td>€ <%= order.total %></td>
+        <% if admin_view %>
+          <td>
+            <%= order.user.email %>
+          </td>
+          <td class="table-actions">
+            <%= link_to edit_admin_order_path(order), class: 'table-actions__link link' do %>
+              <%= fa_icon "edit", class: 'link__icon', title: 'update order'%>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

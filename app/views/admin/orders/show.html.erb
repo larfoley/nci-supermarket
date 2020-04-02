@@ -1,0 +1,7 @@
+<div class="order">
+  <h1 class="page-title">Order #<%= @order.id%></h1>
+  <%= link_to admin_orders_path, :class => 'link link--back'  do %>
+    <%= fa_icon "arrow-left" %> Back to orders
+  <% end %>
+  <%= render "shared/order_details", :order => @order, :admin_view => true %>
+</div>

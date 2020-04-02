@@ -1,0 +1,69 @@
+<div class="card card--padded media">
+  <div class="media__asset">
+    <% if product.img.attached? %>
+      <%= image_tag(url_for(product.img), class: 'product__img')%>
+    <% else %>
+      <%= image_tag('product-placeholder.gif', class: 'product__img')%>
+    <% end %>
+  </div>
+  <div class="media__body">
+    <h2>
+      <%= product.name %>
+    </h2>
+    <p>
+      <% if product.description.empty? %>
+        There is currently no description for this product
+      <% else %>
+        <%= product.description %>
+      <% end %>
+    </p>
+
+    <p>
+      <div class="product__meta">
+        <p class="product__meta-field">
+          <span class="product__meta-key">Price: </span>
+          <span class="product__meta-value">€ <%= number_with_precision(product.price, :precision => 2)  %></span>
+        </p>
+        <p class="product__meta-field">
+          <% if product.stock > 0 %>
+            <span class="product__meta-key">Qunatity:</span>
+            <span class="product__meta-value">
+              <%= product.stock %>
+            </span>
+          <% else %>
+            <span class="text-alert text-alert--danger">
+              This product is currently out of stock.
+            </span>
+          <% end %>
+        </p>
+      </div>
+    </p>
+    <% if !admin_view %>
+
+      <% if product.stock > 0 %>
+        <%= link_to add_to_shopping_cart_path(product), class: 'button', method: :put do %>
+          <span class="button__icon">
+            <%= fa_icon "cart-plus"%>
+          </span>
+          Add to Cart
+        <% end %>
+      <% end %>
+
+    <% else %>
+
+      <%= link_to edit_admin_product_path(product), class: 'button' do %>
+        <span class="button__icon">
+          <%= fa_icon "cart-plus"%>
+        </span>
+          Update
+      <% end %>
+      <%= link_to product_path(product), class: 'button', method: :delete do %>
+        <span class="button__icon">
+          <%= fa_icon "cart-plus"%>
+        </span>
+          Delete
+      <% end %>
+
+    <% end %>
+  </div>
+</div>

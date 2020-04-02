@@ -1,0 +1,41 @@
+.alert {
+  margin-bottom: 2em;
+  padding: .9em;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+
+  &__title {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+
+  &__icon {
+    color: white;
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 20px;
+  }
+
+  &--danger {
+    border: 3px solid $danger-color;
+    background-color: lighten($danger-color, 10%);
+  }
+
+  &--notice {
+    border: 3px solid $success-color;
+    background-color: lighten($success-color, 10%);
+  }
+}
+
+.text-alert {
+  font-weight: bold;
+
+  &--danger {
+    color: $danger-color;
+  }
+
+  &--info {
+    color: $primary-color;
+  }
+}

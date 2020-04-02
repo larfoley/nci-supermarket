@@ -1,0 +1,24 @@
+<div class="action-bar">
+  <div class="action-bar__title">
+    <h1 class="page-title">
+      Products
+      <div class="page-title__sub-text">Showing <%= @products.length %> products</div>
+    </h1>
+  </div>
+  <div class="action-bar__actions">
+    <%= link_to new_admin_product_path, :class => 'button button--small'  do %>
+      <%= fa_icon "plus", class: '' %> New
+    <% end %>
+  </div>
+</div>
+
+<%= form_tag(admin_products_path, :method => "get") do %>
+  <p class="form-field">
+    <%= fa_icon "search", class: 'form-field__icon'%>
+    <%= search_field_tag :search_term, params[:search_term], class: "text-field", placeholder: "Search products..." %>
+  </p>
+<% end %>
+
+<div class="card card--padded">
+  <%= render "shared/product_list", :products => @products, :admin_view => true %>
+</div>

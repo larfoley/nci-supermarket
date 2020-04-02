@@ -1,0 +1,23 @@
+.table {
+  border: solid 1px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 1em;
+  background-color: white;
+
+  thead th {
+    background-color: #ebeff5;
+    border: solid 1px #DDEEEE;
+    color: $muted-text-color;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+  }
+
+  tbody td {
+    border: solid 1px #DDEEEE;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
+  }
+}

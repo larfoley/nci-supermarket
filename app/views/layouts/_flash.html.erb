@@ -1,0 +1,13 @@
+<% flash.each do |type, msg| %>
+  <% if type == "alert" %>
+    <p class="alert alert--danger">
+      <%= fa_icon "exclamation-circle", class: 'alert__icon'%>
+      <%= msg %>
+    </p>
+  <% else %>
+  <p class="alert alert--notice">
+    <%= fa_icon "info-circle", class: 'alert__icon'%>
+    <%= msg %>
+  </p>
+  <% end %>
+<% end %>

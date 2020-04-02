@@ -1,0 +1,26 @@
+<nav class="admin-navbar">
+  <ul class="admin-navbar__list">
+
+    <li class="admin-navbar__item">
+      <%= active_link_to admin_products_path, :class => 'admin-navbar__link' do %>
+        <%= fa_icon "table", class: 'admin-navbar__icon'%>
+        <span>Products</span>
+      <% end %>
+    </li>
+
+    <li class="admin-navbar__item">
+      <%= active_link_to admin_orders_path, :class => 'admin-navbar__link' do %>
+        <%= fa_icon "shopping-cart", class: 'admin-navbar__icon'%>
+        <span>Orders</span>
+      <% end %>
+    </li>
+
+    <li class="admin-navbar__item">
+      <%= active_link_to admin_activity_index_path, :class => 'admin-navbar__link' do %>
+        <%= fa_icon "file", class: 'admin-navbar__icon'%>
+        <span>Activity</span>
+      <% end %>
+    </li>
+
+  </ul>
+</nav>

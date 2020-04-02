@@ -1,0 +1,13 @@
+<h1 class="page-title">
+  Products
+  <div class="page-title__sub-text">Showing <%= @products.length %> products</div>
+</h1>
+
+<%= form_tag(products_path, :method => "get") do %>
+  <p class="form-field">
+    <%= fa_icon "search", class: 'form-field__icon'%>
+    <%= search_field_tag :search_term, params[:search_term], class: "text-field", placeholder: "Search products..." %>
+  </p>
+<% end %>
+
+<%= render "shared/product_list", :products => @products, :admin_view => false %>

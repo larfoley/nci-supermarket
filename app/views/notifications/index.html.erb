@@ -1,0 +1,11 @@
+<h1 class="page-title">
+  Notifications
+</h1>
+
+<ul class="card__list">
+  <% @notifications.each do |notification| %>
+    <li class="card card--padded">
+      <%= sanitize notification.content %>
+    </li>
+  <% end %>
+</ul>

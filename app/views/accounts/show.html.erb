@@ -1,0 +1,25 @@
+<div class="centered-container">
+  <div class="card__list">
+    <div class="card card--padded">
+      <h2 class="page-title">Account Details</h1>
+        <h3>Email</h3>
+        <p><%= current_user.email %></p>
+        <h3>Delivery Address</h3>
+        <p><%= current_user.account.delivery_address == nil ? "--" : current_user.account.delivery_address%></p>
+        <%= link_to edit_user_registration_path, class: 'link' do %>
+          <%= fa_icon "edit", class: 'link__icon'%>
+          Edit account
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'link' do %>
+          <%= fa_icon "sign-out", class: 'link__icon'%>
+          log out
+        <% end %>
+      </div>
+      <div class="card card--padded">
+        <h2 class="page-title">
+          Orders
+        </h2>
+        <%= render "shared/orders", :orders => @orders, :admin_view => false %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+.shopping-cart {
+  display: flex;
+
+  &__orders {
+    width: 75%;
+    margin-right: 2em;
+  }
+
+  &__checkout {
+    flex: 1;
+
+    .card {
+      padding: 1.5em;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+
+  &__total {
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+
+  &__total-label {
+    flex: 1;
+  }
+
+  &__total-value {
+    font-size: 1.2em;
+  }
+}

@@ -1,0 +1,65 @@
+<h1 class="page-title">
+  Your Cart
+  <div class="page-title__sub-text">
+    You have <%= @cart_items.length %> items in your cart
+  </div>
+</h1>
+
+<div class="shopping-cart">
+  <div class="shopping-cart__orders">
+    <div class="order card">
+      <ul class="order__list">
+        <% @cart_items.each do |cart_item| %>
+          <li class="order__item">
+            <div class="order__item-product">
+              <div class="media media--center-items">
+                <div class="media__asset">
+                  <% if cart_item[:product].img.attached? %>
+                    <%= image_tag(url_for(cart_item[:product].img), class: 'order__item-img')%>
+                  <% else %>
+                      <%= image_tag('product-placeholder.gif', class: 'order__item-img')%>
+                  <% end %>
+                </div>
+                <div class="media__body">
+                  <div class="">
+                    <strong><%= cart_item[:product][:name] %></strong>
+                  </div>
+                  € <%= number_with_precision(cart_item[:product][:price], :precision => 2)  %>
+                </div>
+              </div>
+            </div>
+            <div class="order__item-price">
+              <%= link_to add_to_shopping_cart_path(cart_item[:product]), class: 'button button--icon button--success', method: :put do %>
+                <%= fa_icon "plus", base: "circle" %>
+              <% end %>
+              <span class="order__item-amount"><%= cart_item[:amount] %></span>
+              <%= link_to remove_from_shopping_cart_path(cart_item[:product]), class: 'button button--icon button--danger', method: :put do %>
+                <%= fa_icon "minus", base: "circle" %>
+              <% end %>
+
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="shopping-cart__checkout">
+    <% if !@cart.items.empty? %>
+      <div class="card">
+        <h3 class="shopping-cart__total">
+          <span class="shopping-cart__total-label">Total</span>
+          <span class="shopping-cart__total-value">
+            € <%= number_with_precision(@cart.total_price , :precision => 2)  %>
+          </span>
+        </h3>
+        <%= link_to checkout_path(@product), class: 'button' do %>
+          <span class="button__icon">
+            <%= fa_icon "shopping-cart"%>
+          </span>
+          Checkout
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

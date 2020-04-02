@@ -1,0 +1,5 @@
+<h1 class="page-title">Product #<%= @product.id %></h1>
+<%= link_to admin_products_path, :class => 'link link--back'  do %>
+  <%= fa_icon "arrow-left" %> Back to products
+<% end %>
+<%= render "shared/product_details", :product => @product, :admin_view => true %>

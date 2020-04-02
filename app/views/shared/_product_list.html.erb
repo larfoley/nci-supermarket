@@ -1,0 +1,79 @@
+<% table_view = local_assigns.fetch(:table_view, false) %>
+
+<% if admin_view or table_view%>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>PRODUCT</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <% if admin_view %>
+          <th>STOCK</th>
+          <th></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.each do |product| %>
+      <tr>
+        <td>
+          <%= link_to "##{product.id}", admin_product_path(product)  %>
+        </td>
+        <td><%= product.name %></td>
+        <td>€ <%= number_with_precision(product.price, :precision => 2)  %></td>
+
+        <% if admin_view %>
+          <td><%= product.stock %></td>
+
+          <td class="table-actions">
+            <%= link_to admin_product_path(product), method: :delete, class: 'table-actions__link link' do %>
+            <%= fa_icon "trash", class: 'link__icon', title: 'delete product'%>
+            <% end %>
+            <%= link_to edit_admin_product_path(product), class: 'table-actions__link link' do %>
+            <%= fa_icon "edit", class: 'link__icon', title: 'edit product'%>
+            <% end %>
+          </td>
+        <% end %>
+
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+<ul class="product__list">
+  <% products.each do |product| %>
+    <li class="product__item card">
+      <%= link_to product_path(product), class: 'product__link' do %>
+        <% if product.img.attached? %>
+      <%= image_tag(url_for(product.img), class: 'product__img')%>
+      <% else %>
+        <%= image_tag('product-placeholder.gif', class: 'product__img')%>
+      <% end %>
+      <div class="product__details">
+        <h2 class="product__name">
+          <%= product.name %>
+        </h2>
+        <div class="product__meta">
+          <p class="product__meta-field">
+            <span class="product__meta-key">Price: </span>
+            <span class="product__meta-value">€ <%= number_with_precision(product.price, :precision => 2)  %></span>
+          </p>
+          <p class="product__meta-field">
+            <% if product.stock > 0 %>
+              <span class="product__meta-key">Qunatity:</span>
+              <span class="product__meta-value">
+                <%= product.stock %>
+              </span>
+            <% else %>
+              <span class="text-alert text-alert--danger">
+                This product is currently out of stock.
+              </span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<% end %>

@@ -1,0 +1,4 @@
+<%= link_to products_path, :class => 'link link--back'  do %>
+  <%= fa_icon "arrow-left" %> Back to products
+<% end %>
+<%= render "shared/product_details", :product => @product, :admin_view => false %>

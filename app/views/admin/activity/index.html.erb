@@ -1,0 +1,21 @@
+<h1 class="page-title">
+  Activity
+</h1>
+<div class="card card--padded">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>DATE</th>
+        <th>IP ADDRESS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @page_requests.each do |request| %>
+      <tr>
+        <td><%= request[:date] %></td>
+        <td><%= request[:ip] %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

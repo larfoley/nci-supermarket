@@ -1,0 +1,17 @@
+.action-bar {
+  display: flex;
+
+  &__title {
+    flex: 1;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .page-title {
+    margin: 0;
+  }
+
+}

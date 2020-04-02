@@ -1,0 +1,55 @@
+<div class="main-navbar">
+  <div class="main-navbar__container">
+    <div class="main-navbar__left">
+      <ul class="main-navbar__list">
+        <li class="main-navbar__item">
+          <%= active_link_to "Home", "/home", :class => 'main-navbar__link' %>
+        </li>
+        <li class="main-navbar__item">
+          <%= active_link_to "Products", products_path, :class => 'main-navbar__link' %>
+        </li>
+        <li class="main-navbar__item">
+          <%= active_link_to "Recipes", recipes_path, :class => 'main-navbar__link', :data => {:turbolinks => false } %>
+        </li>
+      </ul>
+    </div>
+    <div class="main-navbar__right">
+      <ul class="main-navbar__list">
+        <% if user_signed_in? %>
+          <li class="main-navbar__item">
+            <%= active_link_to notifications_path, class: 'main-navbar__link' do %>
+            <%= fa_icon "bell 2x", class: 'main-navbar__link-icon'%>
+            <% end %>
+          </li>
+          <% if current_user.admin? %>
+            <li class="main-navbar__item">
+              <%= active_link_to admin_path, class: 'main-navbar__link' do %>
+              <%= fa_icon "tachometer 2x", class: 'main-navbar__link-icon'%> Dashboard
+              <% end %>
+            </li>
+          <% end %>
+          <li class="main-navbar__item">
+            <%= active_link_to shopping_cart_path, class: 'main-navbar__link' do %>
+              <%= fa_icon "shopping-cart 2x", class: 'main-navbar__link-icon'%> Cart: <%= @cart.items.length %>
+            <% end %>
+          </li>
+          <li class="main-navbar__item">
+            <%= active_link_to account_path, class: 'main-navbar__link' do %>
+              <%= fa_icon "user-circle 2x", class: 'main-navbar__link-icon'%>
+              <span class="main-navbar__username" title="<%= current_user.email %>">
+                <%= current_user.email %>
+              </span>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="main-navbar__item">
+            <%= active_link_to "Sign up", new_user_registration_path, :class => 'main-navbar__link'  %>
+          </li>
+          <li class="main-navbar__item">
+            <%= active_link_to "Login", new_user_session_path, :class => 'main-navbar__link'  %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

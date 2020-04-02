@@ -1,0 +1,24 @@
+.form-field {
+  margin-bottom: 1.7em;
+  font-size: .85em;
+  position: relative;
+  label {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    text-transform: uppercase;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 12px;
+    left: 17px;
+    color: gray;
+    font-size: 17px;
+
+    &~ .text-field {
+      padding-left: 3em;
+    }
+  }
+}

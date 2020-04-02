@@ -1,0 +1,94 @@
+<div class="card card--padded">
+  <% if @product.new_record? %>
+
+  <%= form_with scope: :product, url: admin_products_path, local: true do |form| %>
+
+    <% if product.errors.any? %>
+      <div class="alert alert--danger">
+        <h2 class="alert__title">
+          You must fix the following validations errors
+        </h2>
+        <ul>
+          <% product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-field">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'text-field' %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: 'text-field' %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :price %>
+      <%= form.number_field :price, class: 'text-field' %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :stock %>
+      <%= form.number_field :stock, class: 'text-field' %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label "Product Image" %>
+      <%= form.file_field :img, class: 'text-field' %>
+    </div>
+
+    <div class="form-field">
+      <%= form.submit class: 'button' %>
+    </div>
+  <% end %>
+
+    <% else %>
+      <%= form_with(model: product, url: admin_product_path) do |form| %>
+        <% if product.errors.any? %>
+          <div class="alert alert--danger">
+            <h2 class="alert__title">
+              You must fix the following validations errors
+            </h2>
+            <ul>
+              <% product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-field">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: 'text-field' %>
+        </div>
+
+        <div class="form-field">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: 'text-field' %>
+        </div>
+
+        <div class="form-field">
+          <%= form.label :price %>
+          <%= form.number_field :price, class: 'text-field' %>
+        </div>
+
+        <div class="form-field">
+          <%= form.label :stock %>
+          <%= form.number_field :stock, class: 'text-field' %>
+        </div>
+
+        <div class="form-field">
+          <%= form.label "Product Image" %>
+          <%= form.file_field :img, class: 'text-field' %>
+        </div>
+
+        <div class="form-field">
+          <%= form.submit class: 'button' %>
+        </div>
+      <% end %>
+  <% end %>
+</div>
