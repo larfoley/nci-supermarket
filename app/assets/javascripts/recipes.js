@@ -74,22 +74,32 @@
     outputElement.innerHTML = html
   }
 
+  handleApiError(error) {
+    alert('Unable to load all recipies try again later. Check console for error')
+    console.log(e);
+  }
+
   window.addEventListener('load', async function () {
     const theMealsDBAdapter = new TheMealsDBAdapter()
     const spoonacularAdapter = new SpoonacularAdapter()
-
     let html = ""
 
     try {
       html += await theMealsDBAdapter.findAll()
-      html += await spoonacularAdapter.findAll()
-
-      renderHTML(html)
 
     } catch (e) {
-      renderHTML('Unable to load recipies try again later. Check console for error')
-      console.log(e);
+      handleApiError(e)
     }
+
+    try {
+      html += await spoonacularAdapter.findAll()
+
+    } catch (e) {
+      handleApiError(e)
+    }
+
+    renderHTML(html)
+
   })
 
 })()
