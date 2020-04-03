@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   def index
     @notifications = []
 
-    # Filtering duplicate notifications due to bug with rails observers
+    # Filtering duplicate notifications due to bug with rails observers causing
     # after_commit being called twice.
     # More info here https://rails.lighthouseapp.com/projects/8994/tickets/764-observers-on-a-model-are-called-multiple-times
     notifs = Notification.all
