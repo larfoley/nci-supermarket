@@ -22,7 +22,11 @@
           <% end %>
         </td>
         <td><%= order.created_at %></td>
-        <td><%= order.status %></td>
+        <% if order.status == 'delivered' %>
+          <td class="text--success"><%= order.status %></td>
+        <% else %>
+          <td class="text--info"><%= order.status %></td>
+        <% end %>
         <td>€ <%= order.total %></td>
         <% if admin_view %>
           <td>

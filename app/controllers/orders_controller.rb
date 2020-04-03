@@ -5,11 +5,24 @@ class OrdersController < ApplicationController
     for cart_item in @cart.items do
       begin
         product = Product.find(cart_item["id"])
+        order_qunantity = cart_item["amount"].to_i
+        available_stock = product[:stock]
 
-        if product[:stock] < 1 then
+        if available_stock < 1 then
           @cart.remove(cart_item)
           flash.alert = "Sorry, #{cart_item["name"]} is currently out of stock and has been removed from your cart"
+
+        elsif (available_stock - order_qunantity) < 0
+
+          for i in 1..order_qunantity - available_stock
+            @cart.remove(cart_item)
+          end
+
+          redirect_to shopping_cart_url
+
+          flash.alert = "Sorry, #{cart_item["name"]} there the Quantity you order is no longer available"
         else
+
           product.stock -= cart_item["amount"].to_i
           begin
             product.save

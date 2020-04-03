@@ -3,18 +3,7 @@
 
   <%= form_with scope: :product, url: admin_products_path, local: true do |form| %>
 
-    <% if product.errors.any? %>
-      <div class="alert alert--danger">
-        <h2 class="alert__title">
-          You must fix the following validations errors
-        </h2>
-        <ul>
-          <% product.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render partial: '/shared/form_errors', locals: { model: product } %>
 
     <div class="form-field">
       <%= form.label :name %>

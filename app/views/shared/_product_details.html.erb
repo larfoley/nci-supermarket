@@ -18,7 +18,7 @@
       <% end %>
     </p>
 
-    <p>
+    <div>
       <div class="product__meta">
         <p class="product__meta-field">
           <span class="product__meta-key">Price: </span>
@@ -37,7 +37,8 @@
           <% end %>
         </p>
       </div>
-    </p>
+      <br>
+    </div>
     <% if !admin_view %>
 
       <% if product.stock > 0 %>
@@ -57,7 +58,7 @@
         </span>
           Update
       <% end %>
-      <%= link_to product_path(product), class: 'button', method: :delete do %>
+      <%= link_to admin_product_path(product), class: 'button', method: :delete do %>
         <span class="button__icon">
           <%= fa_icon "cart-plus"%>
         </span>

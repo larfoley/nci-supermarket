@@ -32,10 +32,13 @@ class ShoppingCartsController < ApplicationController
     @product = Product.find(params[:product_id])
 
     if @product[:stock] > 0
+
       @cart.add(@product)
       @product[:stock] -= 1
+
       redirect_to shopping_cart_path(@product)
       flash.now[:notice] = "Product has been added to cart"
+      
     else
       flash.now[:notice] = "This product is currently not available"
     end

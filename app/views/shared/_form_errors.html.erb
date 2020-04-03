@@ -1,7 +1,12 @@
 <% if model.errors.any? %>
-  <ul>
-    <% model.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <div class="alert alert--danger">
+    <h2 class="alert__title">
+      You must fix the following validations errors
+    </h2>
+    <ul>
+      <% model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
