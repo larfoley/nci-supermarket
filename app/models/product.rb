@@ -9,7 +9,7 @@ class Product < ApplicationRecord
     if search_term.empty? then
       Product.all
     else
-      Product.where("name::text LIKE ?", "%#{search_term.strip}%")
+      Product.where("name LIKE ? ", "%#{search_term.strip}%")
     end
   end
 end
