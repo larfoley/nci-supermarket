@@ -9,7 +9,7 @@ class Product < ApplicationRecord
     if search_term.empty? then
       Product.all
     else
-      Product.where("name LIKE ? ","%#{search_term.strip.downcase}%"))
+      Product.where("name ILIKE ? ","%#{search_term.strip.downcase}%")
     end
   end
 end
