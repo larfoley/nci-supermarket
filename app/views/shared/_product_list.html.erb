@@ -4,6 +4,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>PRODUCT</th>
         <th>NAME</th>
         <th>PRICE</th>
@@ -16,6 +17,13 @@
     <tbody>
       <% products.each do |product| %>
       <tr>
+        <td>
+          <% if product.img.attached? %>
+            <%= image_tag(url_for(product.img), class: 'product__img')%>
+          <% else %>
+            <%= image_tag('product-placeholder.gif', class: 'product__img')%>
+          <% end %>
+        </td>
         <td>
           <%= link_to "##{product.id}", admin_product_path(product)  %>
         </td>
