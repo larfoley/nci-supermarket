@@ -10,9 +10,12 @@ class OrdersController < ApplicationController
 
         if available_stock < 1 then
           @cart.remove(cart_item)
-          flash.alert = "Sorry, #{cart_item["name"]} is currently out of stock and has been removed from your cart"
 
           redirect_to shopping_cart_url
+
+          flash.alert = "Sorry, #{cart_item["name"]} is currently out of stock and has been removed from your cart"
+
+          return
 
         elsif (available_stock - order_qunantity) < 0
 
@@ -23,6 +26,8 @@ class OrdersController < ApplicationController
           redirect_to shopping_cart_url
 
           flash.alert = "Sorry, #{cart_item["name"]} there the Quantity you order is no longer available"
+
+          return
         else
 
           product.stock -= cart_item["amount"].to_i
@@ -40,6 +45,8 @@ class OrdersController < ApplicationController
         redirect_to shopping_cart_url
 
         flash.alert = "Sorry, #{cart_item["name"]} is no longer available and has been removed from your cart"
+
+        return 
       end
     end
 
