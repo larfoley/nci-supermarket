@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
   has_one_attached :img
+  has_many :product_orders,dependent: :destroy
+  has_many :orders, through: :product_orders
   validates :name, presence: true
   validates :description, length: { maximum: 300 }
   validates :stock, numericality: { only_integer: true, greater_than: -1 }
