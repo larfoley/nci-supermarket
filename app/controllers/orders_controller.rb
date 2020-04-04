@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
           @cart.remove(cart_item)
           flash.alert = "Sorry, #{cart_item["name"]} is currently out of stock and has been removed from your cart"
 
+          redirect_to shopping_cart_url
+
         elsif (available_stock - order_qunantity) < 0
 
           for i in 1..order_qunantity - available_stock
@@ -35,6 +37,8 @@ class OrdersController < ApplicationController
 
       rescue
         @cart.remove(cart_item)
+        redirect_to shopping_cart_url
+
         flash.alert = "Sorry, #{cart_item["name"]} is no longer available and has been removed from your cart"
       end
     end
